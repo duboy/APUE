@@ -1,0 +1,3 @@
+a write to stdout
+before forkpid = 1200, glob = 6, var =8
+before forkpid = 1201, glob = 7, var =9

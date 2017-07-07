@@ -1,7 +1,7 @@
 #include "apue.h"
 
 int globvar = 6;
-char buf[] = "a write to stdout";
+char buf[] = "a write to stdout\n";
 
 int 
 main (void)
@@ -10,9 +10,9 @@ main (void)
 	pid_t pid;
 	
 	var = 8;
-	if (write(STDOUT_FIFENO, buf, sizeof(buf) - 1) != sizeof(buf) -1)
+	if (write(STDOUT_FILENO, buf, sizeof(buf) - 1) != sizeof(buf) -1)
 		err_sys ("write error");
-	printf ("before fork\n");
+	printf ("before fork");
 	
 	if ((pid = fork()) < 0) {
 		err_sys ("fork error");

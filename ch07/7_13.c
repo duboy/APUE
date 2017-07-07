@@ -1,5 +1,5 @@
 #include "apue.h"
-#include <setjmp>
+#include <setjmp.h>
 
 static void f1 (int, int, int, int);
 static void f2 (void);
@@ -15,19 +15,21 @@ main (void)
 	volatile int volaval;
 	static statval;
 	
-	globval = 1; autoval = 2; regival = 3; volaval =4; statval = 5;
+	gobval = 1; autoval = 2; regival = 3; volaval =4; statval = 5;
 	
 	if (setjmp (jmpbuffer) != 0)
 	{
 		printf ("after longjmp: \n");
 		printf ("gobval = %d, autoval = %d, regival = %d,"
 			" volaval = %d, staval = %d\n",
-			globval, autoval, regival, volaval, statval);
+			gobval, autoval, regival, volaval, statval);
 		exit (0);
 	}
 	
+	gobval = 95; autoval = 96; regival = 97; volaval =98; statval = 99;
+
 	f1 (autoval, regival, volaval, statval);
-	ext (0);
+	exit(0);
 }
 
 static void
@@ -35,7 +37,7 @@ f1 (int i, int j, int k, int l)
 {
 	printf ("in f1():\n");
 	printf ("gobval = %d, autoval = %d, regival = %d,"
-		" volaval = %d, staval = %d\n",	globval, i, j, k, l);
+		" volaval = %d, staval = %d\n",	gobval, i, j, k, l);
 		
 	f2 ();
 }
@@ -43,5 +45,5 @@ f1 (int i, int j, int k, int l)
 static void
 f2 (void)
 {
-	longjmp (jmpbufer, 1);
+	longjmp (jmpbuffer, 1);
 }
