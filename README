@@ -1,1 +1,7 @@
 This is my exercises work of APUE.  
+复制apue.h和error.c到/usr/include
+cp ./include/apue.h ./lib/error.c /usr/include
+在apue.h 后添加：#include "erro.c"
+最后效果如下：
+#include "error.c"
+#endif  /* _APUE_H */
